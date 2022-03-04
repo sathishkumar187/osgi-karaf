@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ModelControllerServiceDao" />
+        <module name="DBConnections" />
+        <module name="Validations" />
+        <module name="SportsShopFeature" />
+        <module name="CustomExceptions" />
+        <module name="View" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ControllerService" target="1.8" />
+      <module name="Dao" target="1.8" />
+      <module name="Model" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

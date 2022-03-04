@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sathish</groupId>
+    <artifactId>SportsShop</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>CustomExceptions</module>
+        <module>Validations</module>
+        <module>View</module>
+        <module>ModelControllerServiceDao</module>
+        <module>DBConnections</module>
+        <module>SportsShopFeature</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-bundle-plugin.version>5.1.4</maven-bundle-plugin.version>
+        <osgi.version>7.0.0</osgi.version>
+        <maximum-memory>256M</maximum-memory>
+        <project.version>1.0-SNAPSHOT</project.version>
+        <model-version>4.0.0</model-version>
+    </properties>
+
+</project>
