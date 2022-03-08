@@ -9,12 +9,12 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>DBConnections</artifactId>
+    <artifactId>validations</artifactId>
     <packaging>bundle</packaging>
 
-    <name>DBConnections Bundle</name>
+    <name>Validations Bundle</name>
     <description>
-        DBConnections OSGi bundle project.
+        Validations OSGi bundle project.
     </description>
 
     <dependencies>
@@ -26,7 +26,7 @@
         </dependency>
         <dependency>
             <groupId>com.sathish</groupId>
-            <artifactId>CustomExceptions</artifactId>
+            <artifactId>customexceptions</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
@@ -64,4 +64,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

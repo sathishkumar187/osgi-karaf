@@ -6,12 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ModelControllerServiceDao" />
-        <module name="DBConnections" />
-        <module name="Validations" />
-        <module name="SportsShopFeature" />
-        <module name="CustomExceptions" />
-        <module name="View" />
+        <module name="product" />
+        <module name="view" />
+        <module name="validations" />
+        <module name="customexceptions" />
+        <module name="dbconnections" />
+        <module name="sportsshopfeature" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

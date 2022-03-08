@@ -1,11 +1,15 @@
 package com.dbconnections;
 
 import com.customexceptions.UnableToConnectException;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.propertytypes.ServiceDescription;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class DBConnection {
+@Component(service = DBConnections.class)
+@ServiceDescription("DBConnections")
+public class DBConnectionImpl implements DBConnections {
 	
     private static final String JDBC_URL = "jdbc:postgresql://localhost:1818/SportsShop";
     private static final String JDBC_USERNAME = "postgres";
@@ -16,7 +20,7 @@ public class DBConnection {
      * It connects database.
      * @return established connection by connection.
      */
-    public static final Connection getConnection() {
+    public Connection getConnection() {
 
         try {
             Class.forName(JDBC_DRIVER);

@@ -26,15 +26,15 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>SportsShopFeature</artifactId>
+    <artifactId>sportsshopfeature</artifactId>
 
-    <name>SportsShopFeature-feature</name>
-    <description>SportsShopFeature details</description>
+    <name>Sports Shop Feature-feature</name>
+    <description>Sports Shop Feature details</description>
 
     <dependencies>
         <dependency>
             <groupId>com.sathish</groupId>
-            <artifactId>View</artifactId>
+            <artifactId>view</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -70,11 +70,6 @@
                 </executions>
                 <configuration>
                     <markTransitiveAsDependency>true</markTransitiveAsDependency>
-                    <aggregateFeatures>true</aggregateFeatures>
-                    <checkDependencyChange>true</checkDependencyChange>
-                    <failOnDependencyChange>false</failOnDependencyChange>
-                    <logDependencyChanges>true</logDependencyChanges>
-                    <overwriteChangedDependencies>true</overwriteChangedDependencies>
                 </configuration>
             </plugin>
         </plugins>

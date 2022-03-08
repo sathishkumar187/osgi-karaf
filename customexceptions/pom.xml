@@ -9,12 +9,12 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Validations</artifactId>
+    <artifactId>customexceptions</artifactId>
     <packaging>bundle</packaging>
 
-    <name>Validations Bundle</name>
+    <name>Custom Exceptions Bundle</name>
     <description>
-        Validations OSGi bundle project.
+        Custom Exceptions OSGi bundle project.
     </description>
 
     <dependencies>
@@ -23,11 +23,6 @@
             <artifactId>osgi.core</artifactId>
             <version>${osgi.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.sathish</groupId>
-            <artifactId>CustomExceptions</artifactId>
-            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
@@ -64,5 +59,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

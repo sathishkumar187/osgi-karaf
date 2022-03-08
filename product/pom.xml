@@ -9,10 +9,10 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ModelControllerServiceDao</artifactId>
+    <artifactId>product</artifactId>
     <packaging>bundle</packaging>
 
-    <name>ModelControllerServiceDao Bundle</name>
+    <name>Product Bundle</name>
     <description>
         ModelControllerServiceDao OSGi bundle project.
     </description>
@@ -26,12 +26,12 @@
         </dependency>
         <dependency>
             <groupId>com.sathish</groupId>
-            <artifactId>CustomExceptions</artifactId>
+            <artifactId>customexceptions</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.sathish</groupId>
-            <artifactId>DBConnections</artifactId>
+            <artifactId>dbconnections</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
