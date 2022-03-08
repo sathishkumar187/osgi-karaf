@@ -11,7 +11,7 @@
     <modules>
         <module>customexceptions</module>
         <module>validations</module>
-        <module>view</module>
+        <module>user_inputs</module>
         <module>product</module>
         <module>dbconnections</module>
         <module>sportsshopfeature</module>
@@ -25,7 +25,6 @@
         <osgi.version>7.0.0</osgi.version>
         <maximum-memory>256M</maximum-memory>
         <project.version>1.0-SNAPSHOT</project.version>
-        <model-version>4.0.0</model-version>
     </properties>
 
 </project>

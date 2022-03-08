@@ -1,4 +1,6 @@
-package com.customexceptions;
+package com.exceptions;
+
+import com.customexceptions.CustomException;
 
 public class InvalidDateException extends CustomException {
 

@@ -1,13 +1,15 @@
 package com.view;
 
 import com.activator.Activator;
+import com.attributes.Choice;
+import com.attributes.ProductAttributes;
 import com.controller.ShopKeeper;
-import com.customexceptions.InvalidProductException;
-import com.customexceptions.UnableToAccessException;
+import com.exceptions.InvalidProductException;
+import com.exceptions.UnableToAccessException;
 import com.model.Product;
+import com.userinputs.UserDetailGetter;
 
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * The shop application for sports-kits using CRUD operations - Create, Read, Update, Delete.
@@ -16,8 +18,6 @@ import java.util.Scanner;
  *  
  */
 public class SportsShop  {
-	
-    public static final Scanner SCANNER = new Scanner(System.in);
 
     /**
      * Main menu.
@@ -27,8 +27,8 @@ public class SportsShop  {
         int operation = 0;
 
         do {
-        	System.out.println("\n\n    <^_^> Sports Shop Application <^_^>\n\n Operations \n  1.Add Product \n  2.Select Product \n  3.Update Product Price \n  4.Remove Product \n  5.Select All Products \n  6.Exit \n\n Select Any Operation");
-            operation = userDetailGetter.getOperation();
+        	System.out.println("\n\n    <^_^> Sports Shop Application <^_^>\n\n Operations \n  1.Add Product \n  2.Select Product \n  3.Update Product Price \n  4.Remove Product \n  5.Select All Products \n  6.Exit");
+            operation = Choice.getOperation();
 
             switch (operation) {
             case 1:
@@ -47,7 +47,8 @@ public class SportsShop  {
             	SportsShop.showAllProducts();
             	break;
             case 6:
-                SCANNER.close();
+                new UserDetailGetter().scanner.close();
+
                 try {
                     Activator.bundle.stop();
                 } catch (Exception exception) {
@@ -65,11 +66,11 @@ public class SportsShop  {
         final Product product = new Product();
         final ShopKeeper shopKeeper = new ShopKeeper();
         
-        product.setBrand(userDetailGetter.getProductBrand());
-        product.setName(userDetailGetter.getProductName());
-        product.setPrice(userDetailGetter.getProductPrice());
-        product.setSize(userDetailGetter.getProductSize());
-        product.setManufactureDate(userDetailGetter.getManufactureDate());
+        product.setBrand(ProductAttributes.getBrand());
+        product.setName(ProductAttributes.getName());
+        product.setPrice(ProductAttributes.getPrice());
+        product.setSize(ProductAttributes.getSize());
+        product.setManufactureDate(ProductAttributes.getManufactureDate());
 
         try {
         	shopKeeper.addProduct(product);
@@ -100,9 +101,9 @@ public class SportsShop  {
         final Product product = new Product();
         final ShopKeeper shopKeeper = new ShopKeeper();
         
-        product.setBrand(userDetailGetter.getProductBrand());
-        product.setName(userDetailGetter.getProductName());
-        product.setSize(userDetailGetter.getProductSize());
+        product.setBrand(ProductAttributes.getBrand());
+        product.setName(ProductAttributes.getName());
+        product.setSize(ProductAttributes.getSize());
         
         try {
         	shopKeeper.selectProduct(product);
@@ -113,7 +114,7 @@ public class SportsShop  {
         } catch (UnableToAccessException exception) {
             System.out.println(exception);
         }
-        product.setPrice(userDetailGetter.getProductPrice());
+        product.setPrice(ProductAttributes.getPrice());
         
         try {
             shopKeeper.updateProductPrice(product);
@@ -133,9 +134,9 @@ public class SportsShop  {
         final Product product = new Product();
         final ShopKeeper shopKeeper = new ShopKeeper();
         
-        product.setBrand(userDetailGetter.getProductBrand());
-        product.setName(userDetailGetter.getProductName());
-        product.setSize(userDetailGetter.getProductSize());
+        product.setBrand(ProductAttributes.getBrand());
+        product.setName(ProductAttributes.getName());
+        product.setSize(ProductAttributes.getSize());
 
         try {
             shopKeeper.removeProduct(product);

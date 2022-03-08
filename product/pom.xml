@@ -34,6 +34,16 @@
             <artifactId>dbconnections</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.sathish</groupId>
+            <artifactId>user_inputs</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sathish</groupId>
+            <artifactId>validations</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,9 +1,11 @@
 package com.view;
 
+import com.attributes.ProductAttributes;
 import com.controller.ShopKeeper;
-import com.customexceptions.InvalidProductException;
-import com.customexceptions.UnableToAccessException;
+import com.exceptions.InvalidProductException;
+import com.exceptions.UnableToAccessException;
 import com.model.Product;
+import com.userinputs.UserDetailGetter;
 
 /**
  * Customer class of the sports shop.
@@ -21,9 +23,9 @@ public class Customer {
         final Product product = new Product();
         final ShopKeeper shopKeeper = new ShopKeeper();
 
-        product.setBrand(userDetailGetter.getProductBrand());
-        product.setName(userDetailGetter.getProductName());
-        product.setSize(userDetailGetter.getProductSize());
+        product.setBrand(ProductAttributes.getBrand());
+        product.setName(ProductAttributes.getName());
+        product.setSize(ProductAttributes.getSize());
         
         try {
             SportsShop.showProduct(shopKeeper.selectProduct(product));

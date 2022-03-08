@@ -1,6 +1,6 @@
 package com.service;
 
-import com.customexceptions.InvalidProductException;
+import com.exceptions.InvalidProductException;
 import com.model.Product;
 
 import java.util.ArrayList;

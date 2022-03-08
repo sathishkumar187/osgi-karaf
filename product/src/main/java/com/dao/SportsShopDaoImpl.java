@@ -1,9 +1,8 @@
 package com.dao;
 
-import com.customexceptions.UnableToAccessException;
 import com.dbconnections.DBConnections;
+import com.exceptions.UnableToAccessException;
 import com.model.Product;
-import org.osgi.service.component.annotations.Reference;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,8 +24,6 @@ public class SportsShopDaoImpl implements SportsShopDao {
     private static final String DELETE_PRODUCT = "update products set isdeleted = ? where brand = ? and name = ? and size = ?";
     private static final String UPDATE_PRODUCT = "update products set price = ? where brand = ? and name = ? and size = ? and isdeleted = ?";
 
-    @Reference
-    protected static DBConnections DBConnections;
     /**
      * Adds the product in database.
      * 

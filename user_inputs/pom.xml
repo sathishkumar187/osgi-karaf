@@ -9,12 +9,12 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>view</artifactId>
+    <artifactId>user_inputs</artifactId>
     <packaging>bundle</packaging>
 
-    <name>View Bundle</name>
+    <name>User inputs Bundle</name>
     <description>
-        View OSGi bundle project.
+        User inputs OSGi bundle.
     </description>
 
     <dependencies>
@@ -23,21 +23,6 @@
             <artifactId>osgi.core</artifactId>
             <version>${osgi.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.sathish</groupId>
-            <artifactId>validations</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sathish</groupId>
-            <artifactId>customexceptions</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sathish</groupId>
-            <artifactId>product</artifactId>
-            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

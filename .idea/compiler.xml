@@ -7,10 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="product" />
-        <module name="view" />
         <module name="validations" />
         <module name="customexceptions" />
         <module name="dbconnections" />
+        <module name="user_inputs" />
         <module name="sportsshopfeature" />
       </profile>
     </annotationProcessing>
