@@ -10,7 +10,7 @@
         <module name="validations" />
         <module name="customexceptions" />
         <module name="dbconnections" />
-        <module name="user_inputs" />
+        <module name="inputgetter" />
         <module name="sportsshopfeature" />
       </profile>
     </annotationProcessing>

@@ -9,12 +9,12 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>validations</artifactId>
+    <artifactId>user_inputs</artifactId>
     <packaging>bundle</packaging>
 
-    <name>Validations Bundle</name>
+    <name>User inputs Bundle</name>
     <description>
-        Validations OSGi bundle project.
+        User inputs OSGi bundle.
     </description>
 
     <dependencies>
@@ -23,11 +23,6 @@
             <artifactId>osgi.core</artifactId>
             <version>${osgi.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.sathish</groupId>
-            <artifactId>customexceptions</artifactId>
-            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
@@ -62,6 +57,7 @@
                     <maxmem>${maximum-memory}</maxmem>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 
