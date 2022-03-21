@@ -14,7 +14,7 @@ public class Choice {
      *
      */
     public static int getOperation() {
-        String operation = String.valueOf(ProductAttributes.USER_DETAIL_GETTER.getInt("Select Any Operation"));
+        final String operation = String.valueOf(ProductAttributes.inputGetter.getInt("Select Any Operation"));
 
         if (operation.matches("[1-6]")) {
             return Integer.parseInt(operation);

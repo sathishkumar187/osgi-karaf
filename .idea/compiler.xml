@@ -6,12 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="sports-shop-feature" />
         <module name="product" />
         <module name="validations" />
-        <module name="customexceptions" />
-        <module name="dbconnections" />
-        <module name="inputgetter" />
-        <module name="sportsshopfeature" />
+        <module name="custom-exceptions" />
+        <module name="input-getter" />
+        <module name="db-connections" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

@@ -18,15 +18,9 @@
     </description>
 
     <dependencies>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>osgi.core</artifactId>
-            <version>${osgi.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.sathish</groupId>
-            <artifactId>customexceptions</artifactId>
+       <dependency>
+            <groupId>com.shop</groupId>
+            <artifactId>custom-exceptions</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
@@ -37,18 +31,11 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <version>${maven-bundle-plugin.version}</version>
-                <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-                        <Bundle-Version>${project.version}</Bundle-Version>
-                        <Bundle-Activator>Activator</Bundle-Activator>
                         <Export-Package>
-                            com.*;version=${project.version}
+                            com.shop.validations.datevalidation;version=${project.version}
                         </Export-Package>
-                        <Import-Package>
-                            *
-                        </Import-Package>
                     </instructions>
                 </configuration>
             </plugin>
@@ -56,11 +43,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                    <maxmem>${maximum-memory}</maxmem>
-                </configuration>
             </plugin>
         </plugins>
     </build>

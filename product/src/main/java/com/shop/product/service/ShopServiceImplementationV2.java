@@ -14,8 +14,13 @@ import java.util.List;
  *
  */
 public class ShopServiceImplementationV2 implements ShopServices {
-	
-    private static final SportsShopDao SPORTS_SHOP_DAO = new SportsShopDaoImpl();
+
+    private static ShopServices shopServices;
+    private static final SportsShopDao SPORTS_SHOP_DAO = SportsShopDaoImpl.getInstance();
+
+    private ShopServiceImplementationV2() {
+
+    }
 
     /**
      * Adds the product.
@@ -85,5 +90,13 @@ public class ShopServiceImplementationV2 implements ShopServices {
 	        } 
 	    }
         throw new InvalidProductException("Product Not In Crew");
+    }
+
+    public static ShopServices getInstance() {
+
+        if (shopServices == null) {
+            shopServices = new ShopServiceImplementationV2();
+        }
+        return shopServices;
     }
 }

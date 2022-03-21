@@ -1,5 +1,6 @@
 package com.shop.product.view;
 
+import com.shop.inputgetter.InputGetter;
 import com.shop.product.activator.Activator;
 import com.shop.product.attributes.Choice;
 import com.shop.product.attributes.ProductAttributes;
@@ -7,7 +8,7 @@ import com.shop.product.controller.ShopKeeper;
 import com.shop.product.exceptions.InvalidProductException;
 import com.shop.product.exceptions.UnableToAccessException;
 import com.shop.product.model.Product;
-import com.userinputs.UserDetailGetter;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -18,6 +19,9 @@ import java.util.List;
  *  
  */
 public class SportsShop  {
+
+    static final ShopKeeper SHOP_KEEPER = ShopKeeper.getInstance();
+    static final Logger LOGGER = Logger.getLogger(SportsShop.class);
 
     /**
      * Main menu.
@@ -47,12 +51,12 @@ public class SportsShop  {
             	SportsShop.showAllProducts();
             	break;
             case 6:
-                new UserDetailGetter().scanner.close();
+                InputGetter.SCANNER.close();
 
                 try {
                     Activator.bundle.stop();
                 } catch (Exception exception) {
-                    System.out.println(exception);
+                    LOGGER.error(exception);
                 }
             }
         } while (operation < 6);
@@ -64,7 +68,6 @@ public class SportsShop  {
      */
     private static void addProduct() {
         final Product product = new Product();
-        final ShopKeeper shopKeeper = new ShopKeeper();
         
         product.setBrand(ProductAttributes.getBrand());
         product.setName(ProductAttributes.getName());
@@ -73,12 +76,12 @@ public class SportsShop  {
         product.setManufactureDate(ProductAttributes.getManufactureDate());
 
         try {
-        	shopKeeper.addProduct(product);
-            System.out.println("\n Product Added Successfully");
+            SHOP_KEEPER.addProduct(product);
+            LOGGER.info("\n Product Added Successfully");
         } catch (InvalidProductException exception) {
-            System.out.println(exception);
+            LOGGER.warn(exception);
         } catch (UnableToAccessException exception) {
-            System.out.println(exception);
+            LOGGER.error(exception);
         }
     }
 
@@ -99,30 +102,29 @@ public class SportsShop  {
      */
     private static void updateProductPrice() {
         final Product product = new Product();
-        final ShopKeeper shopKeeper = new ShopKeeper();
         
         product.setBrand(ProductAttributes.getBrand());
         product.setName(ProductAttributes.getName());
         product.setSize(ProductAttributes.getSize());
         
         try {
-        	shopKeeper.selectProduct(product);
+            SHOP_KEEPER.selectProduct(product);
         } catch (InvalidProductException exception) {
-            System.out.println(exception);
+            LOGGER.warn(exception);
         	updateProductPrice();
         	menu();
         } catch (UnableToAccessException exception) {
-            System.out.println(exception);
+            LOGGER.error(exception);
         }
         product.setPrice(ProductAttributes.getPrice());
         
         try {
-            shopKeeper.updateProductPrice(product);
-            System.out.println("\n Product Updated Successfully");
+            SHOP_KEEPER.updateProductPrice(product);
+            LOGGER.info("\n Product Updated Successfully");
         } catch (InvalidProductException exception) {
-            System.out.println(exception);
+            LOGGER.warn(exception);
         } catch (UnableToAccessException exception) {
-            System.out.println(exception);
+            LOGGER.error(exception);
         }
     }
 
@@ -132,19 +134,18 @@ public class SportsShop  {
      */
     private static void removeProduct() {
         final Product product = new Product();
-        final ShopKeeper shopKeeper = new ShopKeeper();
         
         product.setBrand(ProductAttributes.getBrand());
         product.setName(ProductAttributes.getName());
         product.setSize(ProductAttributes.getSize());
 
         try {
-            shopKeeper.removeProduct(product);
-            System.out.println("\n Product Removed Successfully");
+            SHOP_KEEPER.removeProduct(product);
+            LOGGER.info("\n Product Removed Successfully");
         } catch (InvalidProductException exception) {
-            System.out.println(exception);
+            LOGGER.warn(exception);
         } catch (UnableToAccessException exception) {
-            System.out.println(exception);
+            LOGGER.error(exception);
         }
     }
     
@@ -153,15 +154,14 @@ public class SportsShop  {
      * 
      */
     private static void showAllProducts() {
-    	final ShopKeeper shopKeeper = new ShopKeeper();
     	List<Product> products = null;
     	
     	try {
-    		products = shopKeeper.selectAllProducts();
+    		products = SHOP_KEEPER.selectAllProducts();
     	} catch (InvalidProductException exception) {
-            System.out.println(exception);
+            LOGGER.warn(exception);
         } catch (UnableToAccessException exception) {
-            System.out.println(exception);
+            LOGGER.error(exception);
         }
     	
         if (products != null) {
@@ -189,18 +189,4 @@ public class SportsShop  {
                 product.getManufactureDate()).toString());
         }
     }
-
-    /**
-     * Set the properties file.
-     */
-//    public static void setProperties() {
-//        final Properties properties = new Properties();
-//
-//        try {
-//            properties.load(new FileInputStream(new File("C:/Users/SathishKumarS/eclipse-workspace2/shop/view/log.properties")));
-//            PropertyConfigurator.configure(properties);
-//        } catch (Exception exception) {
-//            System.out.println(exception);
-//        }
-//    }
 }

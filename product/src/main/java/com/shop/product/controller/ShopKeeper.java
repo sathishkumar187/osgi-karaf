@@ -1,5 +1,6 @@
 package com.shop.product.controller;
 
+import com.shop.dbconnections.DBConnections;
 import com.shop.product.model.Product;
 import com.shop.product.service.ShopServices;
 import com.shop.product.service.ShopServiceImplementationV2;
@@ -14,9 +15,10 @@ import java.util.List;
  * @author SathishKumarS
  */
 public class ShopKeeper {
-	
-    //private static final ShopServices SHOP_SERVICE_IMPLEMENTATION = new ShopServiceImplementation();
-    private static final ShopServices SHOP_SERVICE_IMPLEMENTATION_V2 = new ShopServiceImplementationV2();
+
+    private static ShopKeeper shopKeeper;
+    //private static final ShopServices SHOP_SERVICE_IMPLEMENTATION = ShopServiceImplementation.getInstance();
+    private static final ShopServices SHOP_SERVICE_IMPLEMENTATION_V2 = ShopServiceImplementationV2.getInstance();
     
     public void addProduct(final Product product) {
     	//SHOP_SERVICE_IMPLEMENTATION.addProduct(product);
@@ -41,5 +43,12 @@ public class ShopKeeper {
     public List<Product> selectAllProducts() {
     	//SHOP_SERVICE_IMPLEMENTATION.selectAllProducts();
         return SHOP_SERVICE_IMPLEMENTATION_V2.selectAllProducts();
+    }
+
+    public static ShopKeeper getInstance() {
+        if (shopKeeper == null) {
+            shopKeeper = new ShopKeeper();
+        }
+        return shopKeeper;
     }
 }

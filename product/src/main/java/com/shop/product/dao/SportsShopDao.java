@@ -13,10 +13,10 @@ import java.util.List;
 public interface SportsShopDao {
 
     boolean addProduct(Product product);
-	
+
     boolean updateProductPrice(Product product);
-	
+
     boolean removeProduct(Product product);
-	
+
     List<Product> selectAllProducts();
 }

@@ -16,9 +16,14 @@ import java.util.Map;
  * 
  */
 public class ShopServiceImplementation implements ShopServices {
-	
+
+    private static ShopServices shopServices;
     private static final Map<String, List<Product>> SPORTS_KITS = new HashMap<String, List<Product>>();
-	
+
+    private ShopServiceImplementation() {
+
+    }
+
     /**
      * Adds the product.
      * 
@@ -103,5 +108,13 @@ public class ShopServiceImplementation implements ShopServices {
 	        allProducts.addAll(products);
 	    }
 	    return allProducts;
+    }
+
+    public static ShopServices getInstance() {
+
+        if (shopServices == null) {
+            shopServices = new ShopServiceImplementation();
+        }
+        return shopServices;
     }
 }

@@ -1,7 +1,7 @@
 # Project exclude paths
-/CustomExceptions/target/
-/DBConnections/target/
-/ModelControllerServiceDao/target/
-/SportsShopFeature/target/
-/Validations/target/
-/View/target/
+/custom-exceptions/target/
+/db-connections/target/
+/product/target/
+/sports-shop-feature/target/
+/validations/target/
+/input-getter/target/

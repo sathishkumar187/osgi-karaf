@@ -1,7 +1,12 @@
 package com.shop.product.exceptions;
 
-import com.customexceptions.CustomException;
+import com.shop.customexceptions.CustomException;
 
+/**
+ * Invalid product exception.
+ *
+ * @author SathishKumarS
+ */
 public class InvalidProductException extends CustomException {
 
     public InvalidProductException(final String message) {

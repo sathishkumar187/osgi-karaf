@@ -1,7 +1,7 @@
 package com.shop.product.attributes;
 
+import com.shop.inputgetter.InputGetter;
 import com.shop.product.view.SportsShop;
-import com.userinputs.UserDetailGetter;
 import com.shop.validations.datevalidation.DateValidation;
 
 import java.sql.Date;
@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class ProductAttributes {
 
-    static final UserDetailGetter USER_DETAIL_GETTER = new UserDetailGetter();
+    static final InputGetter inputGetter = InputGetter.getInstance();
 
     /**
      * Gets the product brand.
@@ -22,7 +22,7 @@ public class ProductAttributes {
      *
      */
     public static String getBrand() {
-        String brand = USER_DETAIL_GETTER.getString("\n Mention Product Brand(SS, SG, MRF, RBK, NIKE) |--> If You Want To Go Back To Main Menu, Press #");
+        final String brand = inputGetter.getString("\n Mention Product Brand(SS, SG, MRF, RBK, NIKE) |--> If You Want To Go Back To Main Menu, Press #");
         ProductAttributes.goBackToMenu(brand);
 
         if (brand.matches("(?i)ss|sg|mrf|nike")) {
@@ -39,7 +39,7 @@ public class ProductAttributes {
      *
      */
     public static String getName() {
-        String name = USER_DETAIL_GETTER.getString("\n Mention Product Name(Bat, Ball, Stump, Gloves, Helmet) |--> If You Want To Go Back To Main Menu, Press #");
+        final String name = inputGetter.getString("\n Mention Product Name(Bat, Ball, Stump, Gloves, Helmet) |--> If You Want To Go Back To Main Menu, Press #");
         ProductAttributes.goBackToMenu(name);
 
         if (name.matches("(?i)bat|ball|stump|gloves|helmet")) {
@@ -56,7 +56,7 @@ public class ProductAttributes {
      *
      */
     public static double getPrice() {
-        String price = USER_DETAIL_GETTER.getString("\n Mention Product Price |--> If You Want To Go Back To Main Menu, Press #");
+        final String price = inputGetter.getString("\n Mention Product Price |--> If You Want To Go Back To Main Menu, Press #");
         ProductAttributes.goBackToMenu(price);
 
         if (price.matches("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")) {
@@ -73,7 +73,7 @@ public class ProductAttributes {
      *
      */
     public static char getSize() {
-        String size = USER_DETAIL_GETTER.getString("\n Mention Product Size(S, M, L) |--> If You Want To Go Back To Main Menu, Press #");
+        final String size = inputGetter.getString("\n Mention Product Size(S, M, L) |--> If You Want To Go Back To Main Menu, Press #");
         ProductAttributes.goBackToMenu(size);
 
         if (size.matches("(?i)s|m|l")) {
@@ -90,7 +90,7 @@ public class ProductAttributes {
      *
      */
     public static Date getManufactureDate() {
-        String date = USER_DETAIL_GETTER.getString("\n Mention Manufacture Date(YYYY-MM-DD) |--> If You Want To Go Back To Main Menu, Press #");
+        final String date = inputGetter.getString("\n Mention Manufacture Date(YYYY-MM-DD) |--> If You Want To Go Back To Main Menu, Press #");
         ProductAttributes.goBackToMenu(date);
 
         if (DateValidation.validateDate(date)) {
@@ -107,7 +107,6 @@ public class ProductAttributes {
      *
      */
     private static void goBackToMenu(final String userInput) {
-
         if ("#".equals(userInput)) {
             SportsShop.menu();
         }

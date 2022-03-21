@@ -33,7 +33,7 @@ public class Product {
     }
 
     public void setName(final String name) {
-        this.name = name;
+        this.name = name.toUpperCase();
     }
 
     public String getBrand() {
@@ -41,7 +41,7 @@ public class Product {
     }
 
     public void setBrand(final String brand) {
-        this.brand = brand;
+        this.brand = brand.toUpperCase();
     }
 
     public double getPrice() {
@@ -57,7 +57,7 @@ public class Product {
     }
 
     public void setSize(final char size) {
-        this.size = size;
+        this.size = String.valueOf(size).toUpperCase().charAt(0);
     }
 
     public Date getManufactureDate() {

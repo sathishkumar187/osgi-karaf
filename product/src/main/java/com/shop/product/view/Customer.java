@@ -6,6 +6,9 @@ import com.shop.product.attributes.ProductAttributes;
 import com.shop.product.controller.ShopKeeper;
 import com.shop.product.exceptions.InvalidProductException;
 
+import static com.shop.product.view.SportsShop.LOGGER;
+import static com.shop.product.view.SportsShop.SHOP_KEEPER;
+
 /**
  * Customer class of the sports shop.
  * 
@@ -20,18 +23,17 @@ public class Customer {
      */
     void selectProduct() {
         final Product product = new Product();
-        final ShopKeeper shopKeeper = new ShopKeeper();
 
         product.setBrand(ProductAttributes.getBrand());
         product.setName(ProductAttributes.getName());
         product.setSize(ProductAttributes.getSize());
         
         try {
-            SportsShop.showProduct(shopKeeper.selectProduct(product));
+            SportsShop.showProduct(SHOP_KEEPER.selectProduct(product));
         } catch (InvalidProductException exception) {
-            System.out.println(exception);
+            LOGGER.warn(exception);
         } catch (UnableToAccessException exception) {
-            System.out.println(exception);
+            LOGGER.error(exception);
         }
     }
 }
