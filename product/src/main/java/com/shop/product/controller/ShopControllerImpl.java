@@ -7,6 +7,7 @@ import org.osgi.service.component.annotations.Component;
 
 import javax.ws.rs.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -102,7 +103,7 @@ public class ShopControllerImpl implements ShopController{
     @Path("/selectall")
     @Produces("application/json")
     @GET
-    public List<Product> selectAllProduct(@QueryParam("page") final int page,@DefaultValue("10") @QueryParam("limit") final int noOfEntities) {
+    public Map selectAllProduct(@QueryParam("page") final int page,@DefaultValue("10") @QueryParam("limit") final int noOfEntities) {
         final List<Product> products = restService.selectAllProducts();
         int starting = 0, ending = 0;
 
@@ -112,10 +113,24 @@ public class ShopControllerImpl implements ShopController{
         }
 
         if (starting < products.size() && ending < products.size()) {
-            return  products.subList(starting, ending);
+            final Map Products = castToMap(products.subList(starting, ending));
+
+            return Products;
         } else if (starting < products.size()) {
-            return products.subList(starting, products.size());
+            final Map Products = castToMap(products.subList(starting, products.size()));
+            return Products;
         }
         return null;
+    }
+
+    private static Map castToMap(List<Product> productsList) {
+        final Map products = new HashMap<Integer, Product>();
+        int serialNo = 1;
+
+        for (Product product : productsList) {
+            products.put(serialNo, product);
+            serialNo++;
+        }
+        return products;
     }
 }

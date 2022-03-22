@@ -1,8 +1,9 @@
 package com.shop.product.dao;
 
-import com.shop.dbconnections.DBConnections;
+import com.shop.dbconnections.connections.DBConnections;
 import com.shop.product.exceptions.UnableToAccessException;
 import com.shop.product.model.Product;
+import org.osgi.service.component.annotations.Reference;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,6 +20,7 @@ import java.util.List;
  */
 public class SportsShopDaoImpl implements SportsShopDao {
 
+    private static final DBConnections dbConnections = new DBConnections();
     private static SportsShopDao sportsShopDao;
     private static final String INSERT_PRODUCT = "insert into products (brand, name, price, size, manufacturedate, isdeleted) values (?, ?, ?, ?, ?, ?)";
     private static final String SELECT_ALL_PRODUCT = "select brand, name, price, size, manufacturedate from products where isdeleted = ?";
@@ -38,7 +40,7 @@ public class SportsShopDaoImpl implements SportsShopDao {
      */
     public boolean addProduct(final Product product) {
 
-        try (Connection connection = DBConnections.getInstance().getConnection();
+        try (Connection connection = dbConnections.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PRODUCT);) {
             preparedStatement.setString(1, product.getBrand());
             preparedStatement.setString(2, product.getName());
@@ -63,7 +65,7 @@ public class SportsShopDaoImpl implements SportsShopDao {
      */
     public boolean updateProductPrice(final Product product) {
 
-        try (Connection connection = DBConnections.getInstance().getConnection();
+        try (Connection connection = dbConnections.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PRODUCT);) {
             preparedStatement.setDouble(1, product.getPrice());
             preparedStatement.setString(2, product.getBrand());
@@ -86,7 +88,7 @@ public class SportsShopDaoImpl implements SportsShopDao {
      */
     public boolean removeProduct(final Product product) {
 
-        try (Connection connection = DBConnections.getInstance().getConnection();
+        try (Connection connection = dbConnections.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_PRODUCT);) {
             preparedStatement.setBoolean(1, true);
             preparedStatement.setString(2, product.getBrand());
@@ -107,7 +109,7 @@ public class SportsShopDaoImpl implements SportsShopDao {
      */
     public List<Product> selectAllProducts() {
     	
-        try (Connection connection = DBConnections.getInstance().getConnection();
+        try (Connection connection = dbConnections.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCT);) {
             final List<Product> products = new ArrayList<Product>();
             

@@ -1,6 +1,5 @@
 package com.shop.product.controller;
 
-import com.shop.dbconnections.DBConnections;
 import com.shop.product.model.Product;
 import com.shop.product.service.ShopServices;
 import com.shop.product.service.ShopServiceImplementationV2;

@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1647837986234
+Bnd-LastModified: 1647944208494
 Build-Jdk-Spec: 17
 Bundle-Description: ModelControllerServiceDao OSGi bundle project.
 Bundle-ManifestVersion: 2
@@ -17,21 +17,21 @@ Export-Package: com.shop.product.activator;uses:="org.osgi.framework";ve
  roduct.model";version="1.0.0.SNAPSHOT",com.shop.product.view;uses:="com
  .shop.product.model";version="1.0.0.SNAPSHOT"
 Import-Package: com.fasterxml.jackson.jaxrs.json;version="[2.13,3)",com.
- shop.customexceptions;version="[1.0,2)",com.shop.dbconnections;version=
- "[1.0,2)",com.shop.inputgetter;version="[1.0,2)",com.shop.product.activ
- ator,com.shop.product.attributes,com.shop.product.controller,com.shop.p
- roduct.dao,com.shop.product.exceptions,com.shop.product.model,com.shop.
- product.service,com.shop.product.view,com.shop.validations.datevalidati
- on;version="[1.0,2)",javax.ws.rs;version="[2.0,3)",org.apache.cxf;versi
- on="[3.5,4)",org.apache.cxf.endpoint;version="[3.5,4)",org.apache.cxf.j
- axrs;version="[3.5,4)",org.apache.log4j;version="[1.2,2)",org.osgi.fram
- ework;version="[1.9,2)"
+ shop.customexceptions;version="[1.0,2)",com.shop.dbconnections.connecti
+ ons;version="[1.0,2)",com.shop.inputgetter;version="[1.0,2)",com.shop.p
+ roduct.activator,com.shop.product.attributes,com.shop.product.controlle
+ r,com.shop.product.dao,com.shop.product.exceptions,com.shop.product.mod
+ el,com.shop.product.service,com.shop.product.view,com.shop.validations.
+ datevalidation;version="[1.0,2)",javax.ws.rs;version="[2.0,3)",org.apac
+ he.cxf;version="[3.5,4)",org.apache.cxf.endpoint;version="[3.5,4)",org.
+ apache.cxf.jaxrs;version="[3.5,4)",org.apache.log4j;version="[1.2,2)",o
+ rg.osgi.framework;version="[1.9,2)"
 Provide-Capability: osgi.service;objectClass:List<String>="com.shop.prod
  uct.controller.ShopController";uses:="com.shop.product.controller"
 Require-Capability: osgi.service;filter:="(objectClass=com.shop.product.
  controller.ShopController)";effective:=active,osgi.extender;filter:="(&
  (osgi.extender=osgi.component)(version>=1.4.0)(!(version>=2.0.0)))",osg
  i.ee;filter:="(&(osgi.ee=JavaSE)(version=17))"
-Service-Component: OSGI-INF/com.shop.product.controller.RestActivator.xm
- l,OSGI-INF/com.shop.product.controller.ShopControllerImpl.xml
+Service-Component: OSGI-INF/jdbc.xml,OSGI-INF/com.shop.product.controlle
+ r.ShopControllerImpl.xml
 Tool: Bnd-5.1.1.202006162103

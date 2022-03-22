@@ -9,12 +9,14 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
+import java.util.Map;
+
 /**
  * Rest activator.
  *
  * @author SathishKumarS
  */
-@Component(immediate = true)
+@Component(immediate = true, name = "jdbc")
 public class RestActivator {
 
     @Reference
@@ -25,7 +27,7 @@ public class RestActivator {
      * To activate the rest service.
      */
     @Activate
-    public void activate() {
+    public void activate(Map<String, String> properties) {
         System.out.println("Activated");
 
          try {

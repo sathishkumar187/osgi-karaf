@@ -20,5 +20,5 @@ public interface ShopController {
 
     Map updateProduct(List<Product> product);
 
-    List<Product> selectAllProduct(int page, int limit);
+    Map selectAllProduct(int page, int limit);
 }
