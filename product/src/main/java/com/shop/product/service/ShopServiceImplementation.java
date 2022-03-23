@@ -31,7 +31,7 @@ public class ShopServiceImplementation implements ShopServices {
      * 
      */
     public void addProduct(final Product product) {
-	final List<Product> sportsProducts = new ArrayList<Product>();
+	    final List<Product> sportsProducts = new ArrayList<Product>();
 		
 	    if (!SPORTS_KITS.containsKey(product.getBrand())) {
        	    sportsProducts.add(product);
@@ -70,7 +70,7 @@ public class ShopServiceImplementation implements ShopServices {
      * 
      */
     public void updateProductPrice(final Product product) {
-    final Product productDetails = selectProduct(product);
+        final Product productDetails = selectProduct(product);
 		
         if (productDetails != null) {
 	        productDetails.setPrice(product.getPrice());
@@ -88,7 +88,7 @@ public class ShopServiceImplementation implements ShopServices {
     public void removeProduct(final Product product) {
 	    final Product productDetails = selectProduct(product);
 		
-	    if (productDetails == null) {
+	    if (productDetails != null) {
 	        SPORTS_KITS.get(product.getBrand()).remove(productDetails);
 	    } else {
 	        throw new InvalidProductException("Product Not In Crew");
@@ -102,7 +102,7 @@ public class ShopServiceImplementation implements ShopServices {
      * 
      */
     public List<Product> selectAllProducts() {
-        List<Product> allProducts = new ArrayList<>();
+        final List<Product> allProducts = new ArrayList<>();
 		
         for (final List<Product> products : SPORTS_KITS.values()) {
 	        allProducts.addAll(products);

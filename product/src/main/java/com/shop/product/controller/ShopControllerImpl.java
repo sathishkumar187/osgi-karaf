@@ -6,8 +6,9 @@ import com.shop.product.service.RestServiceImpl;
 import org.osgi.service.component.annotations.Component;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,10 +17,10 @@ import java.util.Map;
  *
  * @author SathishKumarS
  */
-@Component(service = ShopController.class)
-public class ShopControllerImpl implements ShopController{
+@Component(service = ShopController.class, immediate = true)
+public class ShopControllerImpl implements ShopController {
 
-    private static RestService restService = RestServiceImpl.getInstance();
+    private static final RestService REST_SERVICE = RestServiceImpl.getInstance();
 
     /**
      * adds the product.
@@ -29,11 +30,11 @@ public class ShopControllerImpl implements ShopController{
      */
     @Override
     @Path("/add")
-    @Consumes("application/json")
-    @Produces("application/json")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @POST
-    public Map<String, Boolean> addProduct(List<Product> products) {
-        return restService.addProduct(products);
+    public Map<String, Boolean> addProduct(final List<Product> products) {
+        return REST_SERVICE.addProduct(products);
     }
 
     /**
@@ -47,15 +48,23 @@ public class ShopControllerImpl implements ShopController{
      */
     @Override
     @Path("/select")
-    @Produces("application/json")
+    @Produces(MediaType.APPLICATION_JSON)
     @GET
-    public Product selectProduct(@QueryParam("brand") String brand, @QueryParam("name") String name, @QueryParam("size") char size) {
+    public List selectProduct(@QueryParam("brand") final String brand, @QueryParam("name") final String name, @QueryParam("size") final char size) {
         final Product product = new Product();
 
-        product.setBrand(brand);
-        product.setName(name);
-        product.setSize(size);
-        return restService.selectProduct(product);
+        if (brand != null && name != null && size != 0) {
+            product.setBrand(brand);
+            product.setName(name);
+            product.setSize(size);
+
+            return REST_SERVICE.selectProduct(product);
+        } else {
+            final List invalid = new ArrayList();
+
+            invalid.add("Please Mention Brand, Name And Size");
+            return invalid;
+        }
     }
 
     /**
@@ -67,11 +76,11 @@ public class ShopControllerImpl implements ShopController{
      */
     @Override
     @Path("/delete")
-    @Consumes("application/json")
-    @Produces("application/json")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @DELETE
-    public Map<String, Boolean> removeProduct(List<Product> products) {
-        return restService.removeProduct(products);
+    public Map<String, Boolean> removeProduct(final List<Product> products) {
+        return REST_SERVICE.removeProduct(products);
     }
 
     /**
@@ -83,12 +92,11 @@ public class ShopControllerImpl implements ShopController{
      */
     @Override
     @Path("/update")
-    @Consumes("application/json")
-    @Produces("application/json")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @PUT
-    public Map<String, Boolean> updateProduct(List<Product> products) {
-        Map map = restService.updateProductPrice(products);
-        return map;
+    public Map<String, Boolean> updateProduct(final List<Product> products) {
+        return REST_SERVICE.updateProductPrice(products);
     }
 
     /**
@@ -101,36 +109,9 @@ public class ShopControllerImpl implements ShopController{
      */
     @Override
     @Path("/selectall")
-    @Produces("application/json")
+    @Produces(MediaType.APPLICATION_JSON)
     @GET
-    public Map selectAllProduct(@QueryParam("page") final int page,@DefaultValue("10") @QueryParam("limit") final int noOfEntities) {
-        final List<Product> products = restService.selectAllProducts();
-        int starting = 0, ending = 0;
-
-        if (page > 0 && noOfEntities > 0) {
-            starting = (page - 1) * noOfEntities;
-            ending = starting + noOfEntities;
-        }
-
-        if (starting < products.size() && ending < products.size()) {
-            final Map Products = castToMap(products.subList(starting, ending));
-
-            return Products;
-        } else if (starting < products.size()) {
-            final Map Products = castToMap(products.subList(starting, products.size()));
-            return Products;
-        }
-        return null;
-    }
-
-    private static Map castToMap(List<Product> productsList) {
-        final Map products = new HashMap<Integer, Product>();
-        int serialNo = 1;
-
-        for (Product product : productsList) {
-            products.put(serialNo, product);
-            serialNo++;
-        }
-        return products;
+    public Map selectAllProduct(@QueryParam("page") final int page, @DefaultValue("5") @QueryParam("limit") final int noOfEntities) {
+        return REST_SERVICE.selectAllProducts(page, noOfEntities);
     }
 }

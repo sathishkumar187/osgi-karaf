@@ -15,10 +15,10 @@ import java.util.List;
  */
 public class ShopKeeper {
 
-    private static ShopKeeper shopKeeper;
     //private static final ShopServices SHOP_SERVICE_IMPLEMENTATION = ShopServiceImplementation.getInstance();
     private static final ShopServices SHOP_SERVICE_IMPLEMENTATION_V2 = ShopServiceImplementationV2.getInstance();
-    
+    private static ShopKeeper shopKeeper;
+
     public void addProduct(final Product product) {
     	//SHOP_SERVICE_IMPLEMENTATION.addProduct(product);
     	SHOP_SERVICE_IMPLEMENTATION_V2.addProduct(product);

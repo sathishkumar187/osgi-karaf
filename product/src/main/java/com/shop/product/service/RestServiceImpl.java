@@ -4,6 +4,7 @@ import com.shop.product.dao.SportsShopDao;
 import com.shop.product.dao.SportsShopDaoImpl;
 import com.shop.product.model.Product;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.Map;
  *
  * @author SathishKumarS
  */
-public class RestServiceImpl implements RestService{
+public class RestServiceImpl implements RestService {
 
     private static RestService restService;
     private static final SportsShopDao SPORTS_SHOP_DAO = SportsShopDaoImpl.getInstance();
@@ -30,11 +31,12 @@ public class RestServiceImpl implements RestService{
      * @return Boolean.
      */
     @Override
-    public Map<String, Boolean> addProduct(List<Product> products) {
-        final Map<String, Boolean> map = new HashMap<>();
+    public Map addProduct(final List<Product> products) {
+        final Map map = new HashMap<>();
 
         for (int index = 0; index < products.size(); index++) {
             boolean isAdded = SPORTS_SHOP_DAO.addProduct(products.get(index));
+
             map.put(String.format("%s %o","Successfully added product ", index + 1), isAdded);
         }
         return map;
@@ -46,8 +48,32 @@ public class RestServiceImpl implements RestService{
      * @return List of products.
      */
     @Override
-    public List<Product> selectAllProducts() {
-        return SPORTS_SHOP_DAO.selectAllProducts();
+    public Map selectAllProducts(final int page, final int noOfEntities) {
+        final List products = SPORTS_SHOP_DAO.selectAllProducts();
+        final Map response = new HashMap<>();
+        int starting = 0, ending = 0;
+
+        if (page > 0 && noOfEntities > 0) {
+            starting = (page - 1) * noOfEntities;
+            ending = starting + noOfEntities;
+        }
+
+        if (starting < products.size() && ending < products.size()) {
+            response.put("total", products.size());
+            response.put("count", noOfEntities);
+            response.put("data", products.subList(starting, ending));
+
+            return response;
+        } else if (starting < products.size()) {
+            response.put("total", products.size());
+            response.put("count", noOfEntities);
+            response.put("data", products.subList(starting, products.size()));
+
+            return response;
+        } else {
+            response.put("", "Page Not Found");
+            return response;
+        }
     }
 
     /**
@@ -58,8 +84,17 @@ public class RestServiceImpl implements RestService{
      * @return Product
      */
     @Override
-    public Product selectProduct(Product product) {
-        return ShopServiceImplementationV2.getInstance().selectProduct(product);
+    public List selectProduct(final Product product) {
+        final List products= new ArrayList<>();
+        final Product selectedProduct = SPORTS_SHOP_DAO.selectProductById(product);
+
+        if (selectedProduct == null) {
+            products.add("Product Not Available");
+            return products;
+        } else {
+            products.add(selectedProduct);
+            return products;
+        }
     }
 
     /**
@@ -70,11 +105,12 @@ public class RestServiceImpl implements RestService{
      * @return Boolean.
      */
     @Override
-    public Map<String, Boolean> updateProductPrice(List<Product> products) {
-        final Map<String, Boolean> map = new HashMap<>();
+    public Map updateProductPrice(final List<Product> products) {
+        final Map map = new HashMap<>();
 
         for (int index = 0; index < products.size(); index++) {
             boolean isAdded = SPORTS_SHOP_DAO.updateProductPrice(products.get(index));
+
             map.put(String.format("%s %o","Successfully updated product ", index + 1), isAdded);
         }
         return map;
@@ -88,11 +124,16 @@ public class RestServiceImpl implements RestService{
      * @return Boolean
      */
     @Override
-    public Map<String, Boolean> removeProduct(List<Product> products) {
-        final Map<String, Boolean> map = new HashMap<>();
+    public Map removeProduct(final List<Product> products) {
+        final Map map = new HashMap<>();
 
         for (int index = 0; index < products.size(); index++) {
-            boolean isAdded = SPORTS_SHOP_DAO.removeProduct(products.get(index));
+            final Product product = SPORTS_SHOP_DAO.selectProductById(products.get(index));
+            boolean isAdded = false;
+
+            if (product != null) {
+                isAdded = SPORTS_SHOP_DAO.removeProduct(product);
+            }
             map.put(String.format("%s %o","Successfully deleted product ", index + 1), isAdded);
         }
         return map;

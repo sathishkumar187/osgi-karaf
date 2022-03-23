@@ -1,33 +1,34 @@
-package com.shop.product.controller;
+package com.shop.product.activator;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+
+import com.shop.product.controller.ShopController;
 import org.apache.cxf.BusFactory;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
+
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
-
-import java.util.Map;
 
 /**
  * Rest activator.
  *
  * @author SathishKumarS
  */
-@Component(immediate = true, name = "jdbc")
+@Component(immediate = true)
 public class RestActivator {
 
     @Reference
     private ShopController shopController;
-    private Server server;
+    private static Server server;
 
     /**
      * To activate the rest service.
      */
     @Activate
-    public void activate(Map<String, String> properties) {
+    public void activate() {
         System.out.println("Activated");
 
          try {
@@ -40,7 +41,7 @@ public class RestActivator {
 
              server = factoryBean.create();
          } catch (Exception exception) {
-             exception.printStackTrace();
+             System.out.println(exception);
          }
     }
 

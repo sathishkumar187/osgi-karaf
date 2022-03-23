@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class ProductAttributes {
 
-    static final InputGetter inputGetter = InputGetter.getInstance();
+    static final InputGetter INPUT_GETTER = InputGetter.getInstance();
 
     /**
      * Gets the product brand.
@@ -22,7 +22,8 @@ public class ProductAttributes {
      *
      */
     public static String getBrand() {
-        final String brand = inputGetter.getString("\n Mention Product Brand(SS, SG, MRF, RBK, NIKE) |--> If You Want To Go Back To Main Menu, Press #");
+        final String brand = INPUT_GETTER.getString("\n Mention Product Brand(SS, SG, MRF, RBK, NIKE) |--> If You Want To Go Back To Main Menu, Press #");
+
         ProductAttributes.goBackToMenu(brand);
 
         if (brand.matches("(?i)ss|sg|mrf|nike")) {
@@ -39,7 +40,8 @@ public class ProductAttributes {
      *
      */
     public static String getName() {
-        final String name = inputGetter.getString("\n Mention Product Name(Bat, Ball, Stump, Gloves, Helmet) |--> If You Want To Go Back To Main Menu, Press #");
+        final String name = INPUT_GETTER.getString("\n Mention Product Name(Bat, Ball, Stump, Gloves, Helmet) |--> If You Want To Go Back To Main Menu, Press #");
+
         ProductAttributes.goBackToMenu(name);
 
         if (name.matches("(?i)bat|ball|stump|gloves|helmet")) {
@@ -56,7 +58,8 @@ public class ProductAttributes {
      *
      */
     public static double getPrice() {
-        final String price = inputGetter.getString("\n Mention Product Price |--> If You Want To Go Back To Main Menu, Press #");
+        final String price = INPUT_GETTER.getString("\n Mention Product Price |--> If You Want To Go Back To Main Menu, Press #");
+
         ProductAttributes.goBackToMenu(price);
 
         if (price.matches("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")) {
@@ -73,7 +76,8 @@ public class ProductAttributes {
      *
      */
     public static char getSize() {
-        final String size = inputGetter.getString("\n Mention Product Size(S, M, L) |--> If You Want To Go Back To Main Menu, Press #");
+        final String size = INPUT_GETTER.getString("\n Mention Product Size(S, M, L) |--> If You Want To Go Back To Main Menu, Press #");
+
         ProductAttributes.goBackToMenu(size);
 
         if (size.matches("(?i)s|m|l")) {
@@ -90,7 +94,8 @@ public class ProductAttributes {
      *
      */
     public static Date getManufactureDate() {
-        final String date = inputGetter.getString("\n Mention Manufacture Date(YYYY-MM-DD) |--> If You Want To Go Back To Main Menu, Press #");
+        final String date = INPUT_GETTER.getString("\n Mention Manufacture Date(YYYY-MM-DD) |--> If You Want To Go Back To Main Menu, Press #");
+
         ProductAttributes.goBackToMenu(date);
 
         if (DateValidation.validateDate(date)) {

@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1647944205757
+Bnd-LastModified: 1648038512926
 Build-Jdk-Spec: 17
 Bundle-Description: User inputs OSGi bundle.
 Bundle-ManifestVersion: 2

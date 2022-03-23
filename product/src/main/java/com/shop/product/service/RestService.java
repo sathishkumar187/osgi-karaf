@@ -12,13 +12,13 @@ import java.util.Map;
  */
 public interface RestService {
 
-    Map<String, Boolean> addProduct(List<Product> product);
+    Map addProduct(final List<Product> product);
 
-    List<Product> selectAllProducts();
+    Map selectAllProducts(final int page, int noOfEntities);
 
-    Product selectProduct(Product product);
+    List selectProduct(final Product product);
 
-    Map<String, Boolean> updateProductPrice(List<Product> products);
+    Map updateProductPrice(final List<Product> products);
 
-    Map<String, Boolean> removeProduct(List<Product> products);
+    Map removeProduct(final List<Product> products);
 }

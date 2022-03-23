@@ -14,8 +14,9 @@ public class Activator implements BundleActivator {
     public static Bundle bundle;
 
     public void start(BundleContext context) {
-        System.out.println("Starting view bundle");
         bundle = context.getBundle();
+        System.out.println("Starting view bundle");
+
         SportsShop.menu();
     }
 

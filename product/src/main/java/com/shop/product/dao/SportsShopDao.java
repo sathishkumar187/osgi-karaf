@@ -12,11 +12,13 @@ import java.util.List;
  */
 public interface SportsShopDao {
 
-    boolean addProduct(Product product);
+    boolean addProduct(final Product product);
 
-    boolean updateProductPrice(Product product);
+    boolean updateProductPrice(final Product product);
 
-    boolean removeProduct(Product product);
+    boolean removeProduct(final Product product);
 
     List<Product> selectAllProducts();
+
+    Product selectProductById(final Product product);
 }

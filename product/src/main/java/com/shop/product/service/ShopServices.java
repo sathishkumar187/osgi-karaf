@@ -12,14 +12,14 @@ import java.util.List;
  */
 public interface ShopServices {
 	
-    void addProduct(Product product);
+    void addProduct(final Product product);
     
-    List<Product> selectAllProducts();
+    List selectAllProducts();
 		
-    Product selectProduct(Product product);
+    Product selectProduct(final Product product);
 		
-    void updateProductPrice(Product product);
+    void updateProductPrice(final Product product);
 		
-    void removeProduct(Product product);
+    void removeProduct(final Product product);
 }
 

@@ -12,13 +12,13 @@ import java.util.Map;
  */
 public interface ShopController {
 
-    Map addProduct(List<Product> product);
+    Map addProduct(final List<Product> product);
 
-    Product selectProduct(String brand, String name, char size);
+    List selectProduct(final String brand, final String name, final char size);
 
-    Map removeProduct(List<Product> product);
+    Map removeProduct(final List<Product> product);
 
-    Map updateProduct(List<Product> product);
+    Map updateProduct(final List<Product> product);
 
-    Map selectAllProduct(int page, int limit);
+    Map selectAllProduct(final int page, final int limit);
 }
